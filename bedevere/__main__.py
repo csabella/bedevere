@@ -15,7 +15,7 @@ from . import backport, bpo, close_pr, follow_up, news, stage
 
 
 router = routing.Router(backport.router, bpo.router, close_pr.router,
-                        follow_up.router, news.router, stage.router)
+                        follow_up.router, stage.router)
 cache = cachetools.LRUCache(maxsize=500)
 
 
@@ -29,7 +29,7 @@ async def main(request):
             return web.Response(status=200)
         oauth_token = os.environ.get("GH_AUTH")
         async with aiohttp.ClientSession() as session:
-            gh = gh_aiohttp.GitHubAPI(session, "python/bedevere",
+            gh = gh_aiohttp.GitHubAPI(session, "csabella",
                                       oauth_token=oauth_token,
                                       cache=cache)
             # Give GitHub some time to reach internal consistency.
